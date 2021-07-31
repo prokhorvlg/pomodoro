@@ -1,70 +1,35 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# pomodoro
+pomodoro is a demo for a React-based pomodoro-styled timer web app. It is hosted at https://prokhorvlg.github.io/pomodoro/.
 
-## Available Scripts
+Created by [prokhorvlg (Valentin Sigalov)](https://github.com/prokhorvlg).
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+* **React** (JavaScript framework, React hooks, functional components)
+* **SCSS** (Styling)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Use a **pomodoro timer** to make the most out of your workflow (25 minutes work, 5 minutes break, 25 minutes long break at the end)
+* **Plays a notification sound/changes tab title** to notify the user even if they are not in the tab
+* **Skip to the next session** if you have finished your session early
+* **Modify the number of sets** (pomodoro-break pairs) on the fly
+* **Responsive** and usable on mobile
 
-### `npm test`
+## How to Set Up and Run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Open terminal on the folder you want to use the project from.
+2. Clone the repository using `git clone https://github.com/prokhorvlg/pomodoro.git`.
+3. Run `npm install` to install packages.
+4. Run `npm start` to start the app.
+5. Visit `localhost:3000` if the app does not automatically open in browser.
 
-### `npm run build`
+## How to Deploy (GitHub Pages)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Assuming the project is cloned, use `npm deploy` to deploy latest version of project to GitHub Pages.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future ideas
+* Add *unit testing*! I would have done so if I had more time to spare.
+* Add a *settings screen* to permit the user to modify the time spans for sessions.
+* Perhaps add a *visual indicator* (such as a row of colored circles at the top) to give the user a better picture of what the complete pomodoro work session looks like.
