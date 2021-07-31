@@ -3,7 +3,7 @@ import PlayPauseControl from './PlayPauseControl';
 import TimerFillBar from './TimerFillBar';
 
 // TIME_MULTIPLIER: Controls the rate at which time progresses in the timer.
-const TIME_MULTIPLIER = 0.001;
+const TIME_MULTIPLIER = 1;
 
 const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionString, sessionType, timeTotal, timerRunning, setTimerRunning, fullReset, content }) => {
   // Contains the time content displayed to user in timer dial.
@@ -17,7 +17,6 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
         const newTimeRemaining = timeRemaining - 1;
         if (newTimeRemaining === -1) {
           startNextSession();
-          console.log("ended session");
         } else {
           setTimeRemaining(newTimeRemaining);
         }
@@ -45,6 +44,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
     setTimeString(time);
   }, [timeRemaining]);
 
+  // Makes sure that the timer says 0 even if the session is skipped.
   useEffect(() => {
     if (sessionType === "DONE") {
       setTimeRemaining(0);
@@ -52,6 +52,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
   }, [sessionType]);
 
   const toggleTimerRunning = () => {
+    // Resets the timer before running if the timer has finished its last session.
     if (sessionType === "DONE") {
       fullReset(true);
     }

@@ -49,16 +49,13 @@ const App = () => {
 
   // startNextSession: Decides how to start the next session based on the previous session.
   const startNextSession = () => {
-    console.log(sessionNumber);
     if (sets * 2 <= sessionNumber) {
       // reset the pomo
-      console.log("DONE!", sessionNumber);
       setTimerRunning(false);
       setSessionString(content.DONE);
       setSessionType("DONE");
     } else if (((sets * 2) - 2) === sessionNumber) {
       // final pomo session
-      console.log("final pomo!");
       setSessionNumber((sessionNumber) => sessionNumber + 1);
       setSessionString(content.WORK_SESSION);
       setSessionType("WORK_SESSION");
@@ -66,7 +63,6 @@ const App = () => {
       setTimeTotal(times.WORK_SESSION);
     } else if (((sets * 2) - 1) === sessionNumber) {
       // long break at the end
-      console.log("final long break!");
       setSessionNumber((sessionNumber) => sessionNumber + 1);
       setPomosCompleted((pomosCompleted) => pomosCompleted + 1);
       setSessionString(content.LONG_BREAK);
@@ -76,7 +72,6 @@ const App = () => {
     } else {
       if (sessionNumber % 2 === 0) {
         // regular pomo session
-        console.log("normal pomo!");
         setSessionNumber((sessionNumber) => sessionNumber + 1);
         setSessionString(content.WORK_SESSION);
         setSessionType("WORK_SESSION");
@@ -84,7 +79,6 @@ const App = () => {
         setTimeTotal(times.WORK_SESSION);
       } else if (sessionNumber % 2 === 1) {
         // regular short break
-        console.log("normal short break!");
         setSessionNumber((sessionNumber) => sessionNumber + 1);
         setPomosCompleted((pomosCompleted) => pomosCompleted + 1);
         setSessionString(content.SHORT_BREAK);
@@ -97,8 +91,6 @@ const App = () => {
 
   // fullReset: Reset the app state to start mode.
   const fullReset = (retainPomosCompleted = false) => {
-    console.log("full reset.");
-    console.log("normal pomo!");
     setSessionNumber(1);
     setSessionString(content.WORK_SESSION);
     setSessionType("WORK_SESSION");

@@ -42,8 +42,10 @@ button {
   border: none;
   cursor: pointer;
   display: flex;
-  &:hover {
-    background: rgba(255,255,255,0.2);
+  @media (min-width: $breakpoint-med) {
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
   }
 }
 
@@ -74,6 +76,10 @@ button {
       margin-right: 10px;
       color: $brand-highlight;
     }
+    @media (max-width: $breakpoint-med) {
+      border-bottom: 2px solid $brand-faded; 
+      width: 100%;
+    }
   }
   .app-body {
     flex: 1;
@@ -91,7 +97,14 @@ button {
     margin-bottom: 30px;
     width: 100%;
     max-width: 300px;
-    justify-content: space-around;
+    justify-content: space-between;
+    @media (max-width: $breakpoint-med) {
+      max-width: 100%;
+      border-top: 2px solid $brand-faded; 
+      justify-content: space-around;
+      padding-top: 10px;
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -101,6 +114,9 @@ button {
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
+  @media (max-width: $breakpoint-med) {
+    margin-bottom: 10px;
+  }
   .control-sets-title {
     font-size: 1rem;
     font-weight: 500;
@@ -123,6 +139,9 @@ button {
       justify-content: center;
       align-items: center;
       border-radius: 50%;
+      @media (max-width: $breakpoint-med) {
+        border: none;
+      }
     }
   }
 }
@@ -142,18 +161,20 @@ button {
     border-radius: 50%;
     padding: 0;
     margin: 0;
-    &:hover {
-      background: none;
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        background-color: rgba(255,255,255,0.2);
-        top: 30px;
-        bottom: 30px;
-        left: 30px;
-        right: 30px;
-        border-radius: 50%;
+    @media (min-width: $breakpoint-med) {
+      &:hover {
+        background: none;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          background-color: rgba(255,255,255,0.2);
+          top: 30px;
+          bottom: 30px;
+          left: 30px;
+          right: 30px;
+          border-radius: 50%;
+        }
       }
     }
     .timer-time-remaining {
@@ -222,6 +243,9 @@ button {
 
 .play-pause-control {
   margin-top: 30px;
+  @media (max-width: $breakpoint-med) {
+    margin-top: 10px;
+  }
   .play-pause-button {
     height: 70px;
     width: 70px;
@@ -229,6 +253,10 @@ button {
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+    @media (max-width: $breakpoint-med) {
+      height: 50px;
+      border: none;    
+    }
   }
 }
 
