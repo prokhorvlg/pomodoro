@@ -22,9 +22,10 @@ Created by [prokhorvlg (Valentin Sigalov)](https://github.com/prokhorvlg).
 
 1. Open terminal on the folder you want to use the project from.
 2. Clone the repository using `git clone https://github.com/prokhorvlg/pomodoro.git`.
-3. Run `npm install` to install packages.
-4. Run `npm start` to start the app.
-5. Visit `localhost:3000` if the app does not automatically open in browser.
+3. Run `cd pomodoro` to open folder.
+4. Run `npm install` to install packages.
+5. Run `npm start` to start the app.
+6. Visit `localhost:3000` if the app does not automatically open in browser.
 
 ## How to Deploy (GitHub Pages)
 
