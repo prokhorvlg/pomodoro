@@ -5,7 +5,7 @@ import TimerFillBar from './TimerFillBar';
 // TIME_MULTIPLIER: Controls the rate at which time progresses in the timer.
 const TIME_MULTIPLIER = 0.001;
 
-const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionType, timeTotal, timerRunning, setTimerRunning, fullReset, content }) => {
+const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionString, sessionType, timeTotal, timerRunning, setTimerRunning, fullReset, content }) => {
   // Contains the time content displayed to user in timer dial.
   const [timeString, setTimeString] = useState(null);
 
@@ -28,13 +28,31 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionType,
 
   // TIMER PARSING: Parses the time remaining into a printable string.
   useEffect(() => {
-    var minutes = Math.floor(timeRemaining / 60);
-    var seconds = timeRemaining - minutes * 60;
-    setTimeString(minutes + ":" + seconds);
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining - minutes * 60;
+    let time = "";
+    if (minutes.toString().length === 1) {
+      time = "0" + minutes.toString();
+    } else {
+      time = minutes.toString();
+    }
+    time += ":";
+    if (seconds.toString().length === 1) {
+      time = time + "0" + seconds.toString();
+    } else {
+      time = time + seconds.toString();
+    }
+    setTimeString(time);
   }, [timeRemaining]);
 
+  useEffect(() => {
+    if (sessionType === "DONE") {
+      setTimeRemaining(0);
+    }
+  }, [sessionType]);
+
   const toggleTimerRunning = () => {
-    if (sessionType === content.DONE) {
+    if (sessionType === "DONE") {
       fullReset(true);
     }
     setTimerRunning(!timerRunning);
@@ -47,16 +65,19 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionType,
           <TimerFillBar 
               timeRemaining={timeRemaining}
               timeTotal={timeTotal}
+              sessionType={sessionType}
+              content={content}
             />
           <div className="timer-time-remaining">
             <p>{timeString}</p>
           </div>
           <div className="timer-mode">
-            <p>{sessionType}</p>
+            <p>{sessionString}</p>
           </div>
         </button>
       </div>
       <PlayPauseControl 
+          timerRunning={timerRunning}
           toggleTimerRunning={toggleTimerRunning}
         />
     </>

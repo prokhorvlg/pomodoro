@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 const SetsControl = ({ sets, setSets }) => {
   const decreaseSets = () => {
     if (sets > 1) {
@@ -15,9 +18,16 @@ const SetsControl = ({ sets, setSets }) => {
 
   return (
     <div className="control-sets">
-      <button onClick={() => { decreaseSets(); }}>decrease sets</button>
-        <p>{sets}</p>
-      <button onClick={() => { increaseSets(); }}>increase sets</button>
+      <h2 className="control-sets-title">Sets</h2>
+      <div className="control-sets-body">
+        <button onClick={() => { decreaseSets(); }}>
+          <FontAwesomeIcon icon={faMinus} className="fa-icon" />
+        </button>
+        <p className="control-sets-label">{sets}</p>
+        <button onClick={() => { increaseSets(); }}>
+          <FontAwesomeIcon icon={faPlus} className="fa-icon" />
+        </button>
+      </div>
     </div>
   );
 }

@@ -4,13 +4,17 @@ $breakpoint-med: 1024px;
 $breakpoint-large: 1200px;
 $breakpoint-huge: 1800px;
 
-$brand-highlight: #00cd7d;
+$brand-highlight: #06c6e8;
 $brand-background: #2b2f38;
+$brand-faded: rgba(255,255,255,0.6);
+$brand-work: #fe4e4d;
+$brand-short-break: #04ec8c;
+$brand-long-break: #06c6e8;
 
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&display=swap');
 
-$font-heading: 'Rubik', sans-serif;
-$font-body: 'Rubik', sans-serif;
+$font-heading: 'Roboto Mono', sans-serif;
+$font-body: 'Roboto Mono', sans-serif;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-heading;
@@ -38,6 +42,13 @@ button {
   border: none;
   cursor: pointer;
   display: flex;
+  &:hover {
+    background: rgba(255,255,255,0.2);
+  }
+}
+
+.fa-icon {
+  font-size: 1.2rem;
 }
 
 .app-container {
@@ -49,10 +60,70 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .controls {
+  .app-title {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    h1 {
+      font-weight: 400;
+      letter-spacing: 0rem;
+    }
+    .fa-icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+      color: $brand-highlight;
+    }
+  }
+  .app-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    max-width: 100%;
+  }
+  .app-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 300px;
+    justify-content: space-around;
+  }
+}
+
+.control-sets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  .control-sets-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  .control-sets-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .control-sets-label {
+      width: 50px;
+      text-align: center;
+    }
+    button {
+      border: 2px solid $brand-faded;
+      height: 60px;
+      width: 60px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
   }
 }
 
@@ -67,8 +138,40 @@ button {
     justify-content: center;
     align-items: center;
     width: 100%;
-    
     position: relative;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    &:hover {
+      background: none;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        background-color: rgba(255,255,255,0.2);
+        top: 30px;
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        border-radius: 50%;
+      }
+    }
+    .timer-time-remaining {
+      p {
+        margin: 0;
+        font-size: 3.5rem;
+        font-weight: 400;
+      }
+    }
+    .timer-mode {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      p {
+        margin: 0;
+        font-weight: 400;
+      }
+    }
   }
 }
 
@@ -76,9 +179,100 @@ button {
   position: absolute;
   width: 100%;
   height: 100%;
+  svg {
+    transform: rotate(-90deg) scaleY(-1);
+    .timer-faded-circle {
+      stroke: $brand-faded;
+    }
+    .color-work {
+      stroke: $brand-work;
+    }
+    .color-short-break {
+      stroke: $brand-short-break;
+    }
+    .color-long-break {
+      stroke: $brand-long-break;
+    }
+    .color-done {
+      stroke: $brand-highlight;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 0;
+      // blinking white animation
+      animation-name: circleBlinkingDone;
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+    }
+  }
 }
 
-.control-sets {
-  display: flex;
-  flex-direction: row;
+@keyframes circleBlinkingDone {
+  0% {
+    stroke: $brand-highlight;
+  }
+  50% {
+    stroke: $brand-highlight;
+  }
+  51% {
+    stroke: white;
+  }
+  100% {
+    stroke: white;
+  }
+}
+
+.play-pause-control {
+  margin-top: 30px;
+  .play-pause-button {
+    height: 70px;
+    width: 70px;
+    border: 2px solid $brand-faded;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.control-reset {
+  .control-reset-button {
+    flex-direction: column;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    .control-reset-completed {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      p {
+        color: $brand-highlight;
+        font-size: 1.5rem;
+        margin: 0 0 0 10px;
+      }
+    }
+    > p {
+      margin: 0;
+    }
+  }
+}
+
+.control-next {
+  .control-next-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.control-sound {
+  .control-sound-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
+
 import NextControl from './NextControl';
 import SoundControl from './SoundControl';
 import ResetControl from './ResetControl';
@@ -26,8 +29,10 @@ const App = () => {
   
   // Exact id of current session, used to determine what type of session to run. 
   const [sessionNumber, setSessionNumber] = useState(1);
-  // Type of current session, displayed to user in timer dial.
+  // Type of current session, ID used internally.
   const [sessionType, setSessionType] = useState(content.WORK_SESSION);
+  // Type of current session, displayed to user in timer dial.
+  const [sessionString, setSessionString] = useState(content.WORK_SESSION);
 
   // Contains number of total pomo-break pairs. Adjustable by user.
   const [sets, setSets] = useState(4);
@@ -49,12 +54,14 @@ const App = () => {
       // reset the pomo
       console.log("DONE!", sessionNumber);
       setTimerRunning(false);
-      setSessionType(content.DONE);
+      setSessionString(content.DONE);
+      setSessionType("DONE");
     } else if (((sets * 2) - 2) === sessionNumber) {
       // final pomo session
       console.log("final pomo!");
       setSessionNumber((sessionNumber) => sessionNumber + 1);
-      setSessionType(content.WORK_SESSION);
+      setSessionString(content.WORK_SESSION);
+      setSessionType("WORK_SESSION");
       setTimeRemaining(times.WORK_SESSION);
       setTimeTotal(times.WORK_SESSION);
     } else if (((sets * 2) - 1) === sessionNumber) {
@@ -62,7 +69,8 @@ const App = () => {
       console.log("final long break!");
       setSessionNumber((sessionNumber) => sessionNumber + 1);
       setPomosCompleted((pomosCompleted) => pomosCompleted + 1);
-      setSessionType(content.LONG_BREAK);
+      setSessionString(content.LONG_BREAK);
+      setSessionType("LONG_BREAK");
       setTimeRemaining(times.LONG_BREAK);
       setTimeTotal(times.LONG_BREAK);
     } else {
@@ -70,7 +78,8 @@ const App = () => {
         // regular pomo session
         console.log("normal pomo!");
         setSessionNumber((sessionNumber) => sessionNumber + 1);
-        setSessionType(content.WORK_SESSION);
+        setSessionString(content.WORK_SESSION);
+        setSessionType("WORK_SESSION");
         setTimeRemaining(times.WORK_SESSION);
         setTimeTotal(times.WORK_SESSION);
       } else if (sessionNumber % 2 === 1) {
@@ -78,7 +87,8 @@ const App = () => {
         console.log("normal short break!");
         setSessionNumber((sessionNumber) => sessionNumber + 1);
         setPomosCompleted((pomosCompleted) => pomosCompleted + 1);
-        setSessionType(content.SHORT_BREAK);
+        setSessionString(content.SHORT_BREAK);
+        setSessionType("SHORT_BREAK");
         setTimeRemaining(times.SHORT_BREAK);
         setTimeTotal(times.SHORT_BREAK);
       }
@@ -90,7 +100,8 @@ const App = () => {
     console.log("full reset.");
     console.log("normal pomo!");
     setSessionNumber(1);
-    setSessionType(content.WORK_SESSION);
+    setSessionString(content.WORK_SESSION);
+    setSessionType("WORK_SESSION");
     setTimeRemaining(times.WORK_SESSION);
     setTimeTotal(times.WORK_SESSION);
     if (!retainPomosCompleted) {
@@ -104,30 +115,34 @@ const App = () => {
   }, []);  
 
   useEffect(() => {
-    document.title = sessionType + ' - pomodoro';
-  }, [sessionType]);
+    document.title = sessionString + ' - pomodoro';
+  }, [sessionString]);
 
   return (
     <div className="app-container">
       <div className="app-title">
+        <FontAwesomeIcon icon={faStopwatch} className="fa-icon" />
         <h1>pomodoro</h1>
       </div>
-      <SetsControl 
-          sets={sets}
-          setSets={setSets}
-        />
-      <Timer 
-          startNextSession={startNextSession}
-          timeRemaining={timeRemaining}
-          setTimeRemaining={setTimeRemaining}
-          sessionType={sessionType}
-          timeTotal={timeTotal}
-          timerRunning={timerRunning}
-          setTimerRunning={setTimerRunning}
-          fullReset={fullReset}
-          content={content}
-        />
-      <div className="controls">
+      <div className="app-body">
+        <SetsControl 
+            sets={sets}
+            setSets={setSets}
+          />
+        <Timer 
+            startNextSession={startNextSession}
+            timeRemaining={timeRemaining}
+            setTimeRemaining={setTimeRemaining}
+            sessionString={sessionString}
+            sessionType={sessionType}
+            timeTotal={timeTotal}
+            timerRunning={timerRunning}
+            setTimerRunning={setTimerRunning}
+            fullReset={fullReset}
+            content={content}
+          />
+      </div>
+      <div className="app-controls">
         <ResetControl 
             pomosCompleted={pomosCompleted}
             setPomosCompleted={setPomosCompleted}
