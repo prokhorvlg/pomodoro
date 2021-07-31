@@ -8,6 +8,7 @@ Created by [prokhorvlg (Valentin Sigalov)](https://github.com/prokhorvlg).
 
 * **React** (JavaScript framework, React hooks, functional components)
 * **SCSS** (Styling)
+* **Font Awesome** (All icons were added using font awesome, including the site icon)
 
 ## Features
 
@@ -27,7 +28,7 @@ Created by [prokhorvlg (Valentin Sigalov)](https://github.com/prokhorvlg).
 
 ## How to Deploy (GitHub Pages)
 
-Assuming the project is cloned, use `npm deploy` to deploy latest version of project to GitHub Pages.
+Assuming the project is cloned, use `npm run deploy` to deploy latest version of project to GitHub Pages.
 
 ## Future ideas
 * Add *unit testing*! I would have done so if I had more time to spare.

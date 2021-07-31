@@ -10,15 +10,19 @@ const sessionClasses = {
 
 const TimerFillBar = ({ timeRemaining, timeTotal, sessionType }) => {
   const [fillRemaining, setFillRemaining] = useState(0);
-  const [sessionClass, setSessionClass] = useState(null);
+  const [sessionClass, setSessionClass] = useState(sessionClasses["WORK_SESSION"]);
 
   useEffect(() => {
-    const fraction = timeRemaining / timeTotal;
-    setFillRemaining(440 - (440 * fraction));
+    if (timeRemaining && timeTotal) {
+      const fraction = timeRemaining / timeTotal;
+      setFillRemaining(440 - (440 * fraction));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining]);
 
   useEffect(() => {
     setSessionClass(sessionClasses[sessionType]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionType]);
 
   return (

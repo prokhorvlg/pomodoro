@@ -23,6 +23,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
       }, 1000 * TIME_MULTIPLIER)
     }
     return () => clearInterval(timerInterval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timerRunning, timeRemaining]);
 
   // TIMER PARSING: Parses the time remaining into a printable string.
@@ -42,6 +43,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
       time = time + seconds.toString();
     }
     setTimeString(time);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining]);
 
   // Makes sure that the timer says 0 even if the session is skipped.
@@ -49,6 +51,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
     if (sessionType === "DONE") {
       setTimeRemaining(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionType]);
 
   const toggleTimerRunning = () => {
@@ -57,6 +60,7 @@ const Timer = ({ startNextSession, timeRemaining, setTimeRemaining, sessionStrin
       fullReset(true);
     }
     setTimerRunning(!timerRunning);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }
   
   return (

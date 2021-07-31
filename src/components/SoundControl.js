@@ -17,6 +17,7 @@ const SoundControl = ({ timeRemaining }) => {
     if (soundEnabled && timeRemaining === 0) {
       new Audio(DingSound).play();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining]);
   
   if (soundEnabled) {
